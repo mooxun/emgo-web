@@ -1,0 +1,9 @@
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password:
+
+mongo:
+  uri: 'mongodb://root:root@127.0.0.1:27017/?authSource=admin'
+  database: databases
+  itmeout: 60

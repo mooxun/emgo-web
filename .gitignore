@@ -1,0 +1,19 @@
+/node_modules
+/vendor
+/emgo-web
+/config/app.yaml
+.env
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+
+.DS_Store
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
