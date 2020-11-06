@@ -3,9 +3,10 @@ package redis
 import (
 	"errors"
 	"fmt"
+
 	"github.com/gomodule/redigo/redis"
 	"github.com/mooxun/emgo-web/pkg/conf"
-	"log"
+	"github.com/mooxun/emgo-web/pkg/logger"
 )
 
 var pool *redis.Pool
@@ -16,14 +17,14 @@ func Init() {
 		c, err = redis.Dial("tcp", dsn)
 
 		if err != nil {
-			log.Print("redis connect error.")
+			logger.Error("redis connect error.")
 			panic(err.Error())
 		}
 		password := conf.App.Redis.Password
 		if password != "" {
 			if _, err := c.Do("AUTH", "$wlx@redis@pro@1688"); err != nil {
 				c.Close()
-				log.Print("redis invalid password error.")
+				logger.Error("redis invalid password error.")
 				panic(err.Error())
 			}
 		}
@@ -37,7 +38,7 @@ func Init() {
 		Dial:        dialFunc,
 	}
 
-	fmt.Println("redis connect success")
+	logger.Info("redis connect success")
 }
 
 // actually do the redis cmds, args[0] must be the key name.
