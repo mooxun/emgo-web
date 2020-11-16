@@ -14,6 +14,7 @@ var App Config
 type Config struct {
 	Logger Logger
 	Redis  Redis
+	Mongodb Mongodb
 }
 
 // Logger 日志配置
@@ -33,6 +34,12 @@ type Redis struct {
 	Host     string
 	Port     int
 	Password string
+}
+
+type Mongodb struct {
+	Uri      string
+	Database string
+	Timeout  time.Duration
 }
 
 func Init() {
