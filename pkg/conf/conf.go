@@ -12,8 +12,9 @@ import (
 var App Config
 
 type Config struct {
-	Logger Logger
-	Redis  Redis
+	Debug   bool
+	Logger  Logger
+	Redis   Redis
 	Mongodb Mongodb
 }
 

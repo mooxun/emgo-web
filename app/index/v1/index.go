@@ -1,8 +1,10 @@
 package v1
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/mooxun/emgo-web/pkg/response"
+)
 
 func Index(c *gin.Context) {
-	panic("errer")
-	c.JSON(200, "app api v1 index")
+	response.Ok(c, nil)
 }
