@@ -9,7 +9,7 @@ import (
 	"time"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/mooxun/emgo-web/pkg/conf"
+	"github.com/mooxun/emgo-web/pkg/cfg"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -27,13 +27,13 @@ var printCaller = false
 
 // Init 初始化日志库
 func Init() {
-	cfg := &conf.App.Logger
+	cfg := &cfg.App.Logger
 	if err := newLog(cfg); err != nil {
 		fmt.Println("logger init error")
 	}
 }
 
-func newLog(conf *conf.Logger) error {
+func newLog(conf *cfg.Logger) error {
 	// 默认保存最近15天日志
 	if conf.MaxAge == 0 {
 		conf.MaxAge = time.Hour * 24 * 15
@@ -139,7 +139,7 @@ func newLog(conf *conf.Logger) error {
 	return nil
 }
 
-func getWriter(filename string, conf *conf.Logger) (io.Writer, error) {
+func getWriter(filename string, conf *cfg.Logger) (io.Writer, error) {
 	hook, err := rotatelogs.New(
 		filename+"-%Y-%m-%d.log",
 		rotatelogs.WithHandler(&rotateHandler{

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/mooxun/emgo-web/pkg/conf"
+	"github.com/mooxun/emgo-web/pkg/cfg"
 	"github.com/mooxun/emgo-web/pkg/logger"
 	"github.com/mooxun/emgo-web/pkg/mongodb"
 	"github.com/mooxun/emgo-web/pkg/redis"
@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	conf.Init()
+	cfg.Init()
 	logger.Init()
 	redis.Init()
 	mongodb.Init()

@@ -2,7 +2,7 @@ package response
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/mooxun/emgo-web/pkg/conf"
+	"github.com/mooxun/emgo-web/pkg/cfg"
 	"github.com/mooxun/emgo-web/pkg/ecode"
 )
 
@@ -37,7 +37,7 @@ func Ok(c *gin.Context, data interface{}) {
 // 错误响应
 func Err(c *gin.Context, errMsg ErrMsg) {
 	var message string
-	if !conf.App.Debug || errMsg.Error == nil {
+	if !cfg.App.Debug || errMsg.Error == nil {
 		message = ecode.GetMsg(errMsg.Code)
 	} else {
 		message = errMsg.Error.Error()

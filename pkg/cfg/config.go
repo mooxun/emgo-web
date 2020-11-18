@@ -1,4 +1,4 @@
-package conf
+package cfg
 
 import (
 	"fmt"
@@ -14,6 +14,7 @@ var App Config
 type Config struct {
 	Debug   bool
 	Logger  Logger
+	Mysql	Mysql
 	Redis   Redis
 	Mongodb Mongodb
 }
@@ -28,6 +29,20 @@ type Logger struct {
 	RotationTime time.Duration // 多久分割一次日志
 	Caller       bool          // 是否打印文件行号
 	SplitLevel   bool          // 是否把不同级别的日志打到不同文件
+}
+
+// Mysql 配置
+type Mysql struct {
+	Host      string
+	Port      string
+	Database  string
+	Username  string
+	Password  string
+	Charset   string
+	Collation string
+	Prefix    string
+	Engine    string
+	Debug     bool
 }
 
 // Redis 配置

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/gomodule/redigo/redis"
-	"github.com/mooxun/emgo-web/pkg/conf"
+	"github.com/mooxun/emgo-web/pkg/cfg"
 	"github.com/mooxun/emgo-web/pkg/logger"
 )
 
@@ -13,16 +13,16 @@ var pool *redis.Pool
 
 func Init() {
 	dialFunc := func() (c redis.Conn, err error) {
-		dsn := fmt.Sprintf("%s:%d", conf.App.Redis.Host, conf.App.Redis.Port)
+		dsn := fmt.Sprintf("%s:%d", cfg.App.Redis.Host, cfg.App.Redis.Port)
 		c, err = redis.Dial("tcp", dsn)
 
 		if err != nil {
 			logger.Error("redis connect error.")
 			panic(err.Error())
 		}
-		password := conf.App.Redis.Password
+		password := cfg.App.Redis.Password
 		if password != "" {
-			if _, err := c.Do("AUTH", "$wlx@redis@pro@1688"); err != nil {
+			if _, err := c.Do("AUTH", password); err != nil {
 				c.Close()
 				logger.Error("redis invalid password error.")
 				panic(err.Error())

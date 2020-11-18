@@ -2,7 +2,8 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	v1 "github.com/mooxun/emgo-web/routes/api/index/v1"
+	homeV1 "github.com/mooxun/emgo-web/routes/api/home/v1"
+	platformV1 "github.com/mooxun/emgo-web/routes/api/platform/v1"
 	"github.com/mooxun/emgo-web/routes/middleware"
 )
 
@@ -18,7 +19,7 @@ func loader(items ...Routers) {
 // 路由注册
 func register() *gin.Engine {
 	r := gin.Default()
-	r.Use(middleware.ErrorHandler())
+	r.Use(middleware.ErrorHandler(), middleware.Cors())
 
 	for _, item := range routers {
 		item(r)
@@ -28,7 +29,7 @@ func register() *gin.Engine {
 }
 
 func Init() *gin.Engine {
-	loader(v1.Router)
+	loader(homeV1.Router, platformV1.Router)
 
 	return register()
 }
