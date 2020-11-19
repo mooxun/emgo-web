@@ -2,7 +2,6 @@ package mongodb
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/mooxun/emgo-web/pkg/cfg"
 	"github.com/mooxun/emgo-web/pkg/logger"
@@ -17,7 +16,6 @@ func Init() {
 	if err != nil {
 		logger.Error(err)
 	}
-	fmt.Println(cfg.App.Mongodb.Database)
 	mg = client.Database(cfg.App.Mongodb.Database)
 
 	logger.Infof("Successfully connected and pinged.")
