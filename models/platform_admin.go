@@ -10,9 +10,8 @@ import (
 type PlatformAdmin struct {
 	ID        uint64    `gorm:"primaryKey" json:"id" title:"ID"`
 	RoleId    int8      `gorm:"index;comment:用户角色ID" json:"role_id"`
-	Username  string    `gorm:"size:20;unique;comment:用户名" json:"username"`
-	Password  string    `gorm:"varchar:150;comment:用户密码" json:"password"`
-	Phone     string    `gorm:"size:20;unique;comment:用户手机号" json:"phone"`
+	Username  string    `gorm:"size:20;unique;comment:用户名" json:"username" validate:"required" label:"用户名"`
+	Password  string    `gorm:"varchar:150;comment:用户密码" json:"password" validate:"required" label:"用户密码"`
 	Status    int       `gorm:"tinyint:3;comment:是否启用" json:"status"`
 	IsRoot    int       `gorm:"tinyint:3;comment:是否是超级管理员" json:"is_root"`
 	CreatedAt time.Time `gorm:"autoCreateTime" json:"created_at" json:"created_at"`

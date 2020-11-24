@@ -2,7 +2,6 @@ package cfg
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/mooxun/emgo-web/pkg/gofile"
 	"github.com/mooxun/emgo-web/pkg/gopath"
@@ -17,45 +16,6 @@ type Config struct {
 	Mysql	Mysql
 	Redis   Redis
 	Mongodb Mongodb
-}
-
-// Logger 日志配置
-type Logger struct {
-	Level        string        // 日志级别
-	Path         string        // 路径
-	Name         string        // 文件名称
-	Console      bool          // 是否输出到控制台
-	MaxAge       time.Duration // 保存多久的日志，默认15天
-	RotationTime time.Duration // 多久分割一次日志
-	Caller       bool          // 是否打印文件行号
-	SplitLevel   bool          // 是否把不同级别的日志打到不同文件
-}
-
-// Mysql 配置
-type Mysql struct {
-	Host      string
-	Port      string
-	Database  string
-	Username  string
-	Password  string
-	Charset   string
-	Collation string
-	Prefix    string
-	Engine    string
-	Debug     bool
-}
-
-// Redis 配置
-type Redis struct {
-	Host     string
-	Port     int
-	Password string
-}
-
-type Mongodb struct {
-	Uri      string
-	Database string
-	Timeout  time.Duration
 }
 
 func Init() {

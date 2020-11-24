@@ -8,7 +8,6 @@ import (
 func Router(e *gin.Engine) {
 	v1 := e.Group("/platform/v1")
 	{
-		v1.GET("passport/test", passport.Test)
-		v1.POST("passport/register", passport.Register)
+		v1.POST("passport/register", passport.Register)	// 管理员注册
 	}
 }

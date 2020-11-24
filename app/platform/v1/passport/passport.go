@@ -1,22 +1,18 @@
 package passport
 
 import (
-	"context"
+	"errors"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mooxun/emgo-web/models"
+	"github.com/mooxun/emgo-web/pkg/requests"
 	"github.com/mooxun/emgo-web/pkg/response"
-	"go.mongodb.org/mongo-driver/bson"
 )
 
-func Test(c *gin.Context) {
-	var user []models.PlatformAdmin
-	_ = models.PlColl().Find(context.Background(), bson.M{}).All(&user)
-	response.Ok(c, user)
-}
-
+// 管理员注册
 func Register(c *gin.Context) {
 	data := &models.PlatformAdmin{}
+
 	if err := c.ShouldBindJSON(data); err != nil {
 		response.Err(c, response.ErrMsg{
 			Code:  707,
@@ -25,13 +21,14 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	res, err := models.PlColl().InsertOne(context.Background(), data)
-	if err != nil {
+	if ok, errMsg := requests.ValidateRequest(data); !ok {
 		response.Err(c, response.ErrMsg{
-			Code:  707,
-			Error: err,
+			Code:   414,
+			Error:  errors.New("表单验证失败"),
+			Result: errMsg,
 		})
+		return
 	}
 
-	response.Ok(c, res)
+	response.Ok(c, data)
 }
