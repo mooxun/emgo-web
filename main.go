@@ -4,6 +4,7 @@ import (
 	"github.com/mooxun/emgo-web/pkg/cfg"
 	"github.com/mooxun/emgo-web/pkg/logger"
 	"github.com/mooxun/emgo-web/pkg/mongodb"
+	"github.com/mooxun/emgo-web/pkg/orm"
 	"github.com/mooxun/emgo-web/pkg/redis"
 	"github.com/mooxun/emgo-web/routes"
 )
@@ -13,6 +14,7 @@ func init() {
 	logger.Init()
 	redis.Init()
 	mongodb.Init()
+	orm.Init()
 }
 
 func main() {
