@@ -20,6 +20,8 @@ func Init() {
 	var err error
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
+
+
 	if err != nil {
 		logger.Error("mysql connect error: ", err)
 	}
@@ -27,6 +29,4 @@ func Init() {
 	if DB.Error != nil {
 		logger.Error("database error: ", err)
 	}
-
-	DB.Logger.LogMode(1)
 }
